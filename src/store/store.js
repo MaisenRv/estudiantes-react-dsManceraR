@@ -3,10 +3,10 @@ import thunk from "redux-thunk";
 
 const initialState = {
     usuario:{
-        correo:"hola",
+        correo:"",
         identificacion:""
     },
-    toke:""
+    token:""
 }
 
 const storeReducer = (state = initialState, action)=>{
@@ -16,7 +16,7 @@ const storeReducer = (state = initialState, action)=>{
         case "SET_IDENTIFICACION":
             return {...state, usuario:{...state.usuario, identificacion: action.payload}}
         case "SET_TOKEN":
-            return {...state,toke: action.payload}
+            return {...state,token: action.payload}
         default: return state
     }
 }

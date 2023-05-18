@@ -1,11 +1,15 @@
+// Hooks
+import { useSelector } from "react-redux"
 // Components
 import FormLogin from "./components/FormLogin"
 
 function App() {
-
+  const {token} = useSelector(state=> state)
   return (
     <main>
-      <FormLogin/>
+      {
+        token ? <p>{token}</p> :<FormLogin/>
+      }
     </main>
   )
 }
