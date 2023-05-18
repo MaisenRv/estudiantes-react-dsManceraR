@@ -1,10 +1,10 @@
+import FormLogin from "./components/FormLogin"
 
 function App() {
-  
 
   return (
     <main>
-      
+      <FormLogin/>
     </main>
   )
 }
