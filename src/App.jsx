@@ -1,14 +1,17 @@
 // Hooks
 import { useSelector } from "react-redux"
 // Components
+// Components
 import FormLogin from "./components/FormLogin"
+import StudentsView from "./templates/StudentsView"
 
 function App() {
   const {token} = useSelector(state=> state)
   return (
     <main>
+
       {
-        token ? <p>{token}</p> :<FormLogin/>
+        token ? <StudentsView/> :<FormLogin/>
       }
     </main>
   )
