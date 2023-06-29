@@ -2,21 +2,25 @@ import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 
 const checkSession = ()=>{
-    let initialState
+    
     const session = sessionStorage.getItem("session")
     if (session) {
-        initialState = JSON.parse(sessionStorage.getItem("session"))
-    }else{
-        initialState = {
-            usuario:{
-                correo:"",
-                identificacion:""
-            },
-            token:""
-        }
+        const initialState = {
+            usuario: JSON.parse(sessionStorage.getItem("session")).usuario,
+            token: JSON.parse(sessionStorage.getItem("session")).token,
+            estudiantes: []
+        }   
+        return initialState
+    }
+    const initialState = {
+        usuario:{
+            correo:"",
+            identificacion:""
+        },
+        token:"",
+        estudiantes:[]
     }
     return initialState
-
 }
 
 
@@ -27,7 +31,9 @@ const storeReducer = (state = checkSession(), action)=>{
         case "SET_IDENTIFICACION":
             return {...state, usuario:{...state.usuario, identificacion: action.payload}}
         case "SET_TOKEN":
-            return {...state,token: action.payload}
+            return {...state, token: action.payload}
+        case "SET_ESTUDIANTES":
+            return {...state, estudiantes: action.payload}
         default: return state
     }
 }

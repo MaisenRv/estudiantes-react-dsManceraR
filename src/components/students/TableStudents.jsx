@@ -1,6 +1,23 @@
+import React, { useEffect} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import getAllStudents from '../../services/students/getAllStudents'
 
 import Student from './Student'
 const TableStudents = () =>{
+    const {token, estudiantes} = useSelector(state => state)
+    const dispatch = useDispatch()  
+    
+    useEffect(()=>{
+        dispatch( getAllStudents(token));
+    },[]) 
+
+    const formatStudents = (students)=>{
+        return students.map(s=>(
+                <Student {...s} key={s.estudiante_id} />
+            )
+        )
+    }
 
     return(
         <>
@@ -15,12 +32,7 @@ const TableStudents = () =>{
                     </tr>
                 </thead>
                 <tbody>
-                    <Student/>
-                    <Student/>
-                    <Student/>
-                    <Student/>
-                    <Student/>
-                    <Student/>
+                    {formatStudents(estudiantes)}
                 </tbody>
             </table>
         </>
